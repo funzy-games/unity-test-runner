@@ -18,7 +18,7 @@ class Input {
     const testMode = getInput('testMode') || 'all';
     const rawProjectPath = getInput('projectPath') || '.';
     const rawArtifactsPath = getInput('artifactsPath') || 'artifacts';
-    const rawUseHostNetwork = getInput('useHostNetwork') || 'false';
+    const rawUseNetwork = getInput('useNetwork') || 'bridge';
     const customParameters = getInput('customParameters') || '';
 
     // Validate input
@@ -34,14 +34,9 @@ class Input {
       throw new Error(`Invalid projectPath "${rawProjectPath}"`);
     }
 
-    if (rawUseHostNetwork !== 'true' && rawUseHostNetwork !== 'false') {
-      throw new Error(`Invalid useHostNetwork "${rawUseHostNetwork}"`);
-    }
-
     // Sanitise input
     const projectPath = rawProjectPath.replace(/\/$/, '');
     const artifactsPath = rawArtifactsPath.replace(/\/$/, '');
-    const useHostNetwork = rawUseHostNetwork === 'true';
 
     // Return sanitised input
     return {
@@ -49,7 +44,7 @@ class Input {
       projectPath,
       testMode,
       artifactsPath,
-      useHostNetwork,
+      useNetwork,
       customParameters,
     };
   }
