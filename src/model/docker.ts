@@ -79,6 +79,7 @@ const Docker = {
     ).join(';');
 
     return `docker run \
+                --platform=linux/amd64 \
                 --workdir /github/workspace \
                 --cidfile "${cidfile}" \
                 --rm \
